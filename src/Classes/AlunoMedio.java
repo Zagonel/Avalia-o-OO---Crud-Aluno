@@ -5,20 +5,38 @@
  */
 package Classes;
 
+import Utilitario.Teclado;
+import java.util.InputMismatchException;
+
 /**
  *
  * @author igor_
  */
-public class AlunoMedio extends Aluno{
+public class AlunoMedio extends Aluno {
 
-    private double notas[];
+    private double notas[] = new double[5];
 
     private double notaFinal;
 
-    private double calculaMediaAritmetica(int qtdNotas) {
-        double x = 0;
+    @Override
+    public void calculaNota() {
 
-        return x;
+        for (int i = 0; i < 5; i++) {
+            try {
+                double nota = Teclado.leDouble("Digite a " + (i + 1) + "º" + " nota");
+                notas[i] = nota;
+            } catch (InputMismatchException erro) {
+                throw new ErroNotaErrada("Tipo de nota errado para o aluno");
+            }
+        }
+
+        double aux = 0;
+
+        for (int i = 0; i < 5; i++) {
+            aux += notas[i];
+            this.notaFinal = (aux / 5);
+        }
+
     }
 
     public double[] getNotas() {
@@ -34,9 +52,8 @@ public class AlunoMedio extends Aluno{
     }
 
     @Override
-    public String NotaFinal() {        
+    public String NotaFinal() {
         String nota = String.valueOf(this.notaFinal);
-        return nota;        
+        return nota;
     }
-
 }

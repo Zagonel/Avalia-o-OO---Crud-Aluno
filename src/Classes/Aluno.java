@@ -41,4 +41,12 @@ public abstract class Aluno {
 
     public abstract String NotaFinal();
 
+    public abstract void calculaNota();
+
+    @Override
+    public String toString() {
+        return "Aluno{" + "nome=" + nome + ", matricula=" + matricula + ", nivelEscolaridade=" + nivelEscolaridade + '}';
+    }
+    
+
 }
